@@ -20,11 +20,36 @@ public class ClienteServicioImpl implements ClienteServicio {
 	public List<Cliente> listarClientes() {
 		return clienteDao.listarClientes();
 	}
+	
+	@Override
+	@Transactional
+	public void guardarCliente(Cliente cliente) {
+		clienteDao.guardarCliente(cliente);
+	}
 
 	@Override
 	@Transactional
-	public void eliminarPorRut(String rut) {
-		
-		
+	public Cliente buscarCliente(String rut) {
+		Cliente cliente = clienteDao.buscarCliente(rut);
+		return cliente;
+	}
+	
+	@Override
+	@Transactional
+	public void eliminarCliente(Cliente cliente) {
+		clienteDao.eliminarCliente(cliente);
+	}
+
+	@Override
+	@Transactional
+	public void eliminarCliente(String rut) {
+		Cliente cliente = clienteDao.buscarCliente(rut);
+		clienteDao.eliminarCliente(cliente);	
+	}
+
+	@Override
+	public boolean existeCliente(Cliente cliente) {
+		return clienteDao.buscarCliente(cliente.getRut())!=null;
+	
 	}
 }
