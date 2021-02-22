@@ -24,4 +24,22 @@ public class ClienteDaoImpl implements ClienteDao {
 		return clientes;
 	}
 
+	@Override
+	public Cliente buscarCliente(String rut) {
+		Session session = factory.getCurrentSession();
+		return session.get(Cliente.class, rut);
+	}
+
+	@Override
+	public void eliminarCliente(Cliente cliente) {
+		Session session = factory.getCurrentSession();
+		if (cliente !=null)
+			session.delete(cliente);	
+	}
+
+	@Override
+	public void guardarCliente(Cliente cliente) {
+		Session session = factory.getCurrentSession();
+		session.save(session);
+	}
 }
